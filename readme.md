@@ -51,7 +51,7 @@ Transform the continuous variables to one-hot encoding variables, and check whet
 
 ### Model Structure
 
-Concatenate all the feaures, and input to a 3-layers MLP. Then perform a multiclass classification task and predict the lottery type the user will buy in the session (Two-color Ball, Ten Times Good Luck, Welfare Lottery 3D, Other Lottery Type)
+Concatenate all the feaures, and input to a 3-layers MLP in PyTorch. Then perform a multiclass classification task and predict the lottery type the user will buy in the session (Two-color Ball, Ten Times Good Luck, Welfare Lottery 3D, Other Lottery Type).
 
 ### Prediction result using historical data
 
