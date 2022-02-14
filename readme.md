@@ -59,7 +59,7 @@ Accuracy metrics using the data from 07/2021:
 
 | Type | Accuracy |
 | ---- | ---- |
-| Average Accuracy | 0.85 |
+| Average Accuracy | 0.913 |
 | No Buy | 0.833 |
 | Ten Times Good Luck | 0.814 |
 | Two-color Ball | 0.961 |
