@@ -19,14 +19,8 @@ def get_data(date):
     '''
     获取每天的人脸和会话订单数据作为测试集输入
     '''
-    # db = pymysql.connect(host = 'rm-wz9803mf0awg83z580o.mysql.rds.aliyuncs.com', \
-    #     port = 3306, user = 'platfromread', passwd = 'Szyc2019@', db = 'user_center', charset = 'utf8')
 
-    server = SSHTunnelForwarder(
-        ssh_address_or_host=('192.168.1.100', 22),
-        ssh_username='mysql-aly',
-        ssh_password='Szyh-2021',
-        remote_bind_address=('rm-wz9803mf0awg83z580o.mysql.rds.aliyuncs.com', 3306))
+    server = ... # confidential information
     server.start()
 
     sql1 = '''
