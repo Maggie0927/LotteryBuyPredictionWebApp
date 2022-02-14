@@ -19,15 +19,6 @@ class MysqlDB():
         提取数据库的彩票订单表
         '''
 
-        # server = SSHTunnelForwarder(
-        #     ssh_address_or_host=('192.168.1.100', 22),
-        #     ssh_username='mysql-aly',
-        #     ssh_password='Szyh-2021',
-        #     remote_bind_address=('rm-wz9803mf0awg83z580o.mysql.rds.aliyuncs.com', 3306))
-        # server.start()
-
-        # db = pymysql.connect(host = '127.0.0.1', \
-        #     port = server.local_bind_port, user = 'cloudlotteryread', passwd = 'Szyc2020@', db = 'cloudlottery', charset = 'utf8')
 
         sql = '''SELECT
 
