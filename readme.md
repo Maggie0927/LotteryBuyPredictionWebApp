@@ -1,69 +1,71 @@
-## 购买预测模型
+## Lottery Purchase Prediction Model
 
-使用Session人脸和用户历史购买的离散特征，预测本Session会购买什么彩种
+Objective: predict the lottery type that the user in the session will buy, using the discrete features from the user face image and user's historical purchase data.  
 
-### 数据来源
+Goal: recommend lottery types to users and improve the order conversion rate, in order to increase sales revenue.
 
-* Session内抓取的第一张人脸的特征（百度人脸识别直接得到）： 
+### Data Source
+
+* The feature from the user face image in the Session (from Baidu Face Recognition API)： 
     
-    美丑、表情、情绪，以及人脸id（可选，只针对已经存在人员）
+    Beauty, Expression, Emotion, Face ID (optional, only for old users)
 
-* Session其他的特征：
+* Other features from Session：
      
-    会话抓取人脸时间（0-24小时）
+    Session Time (in 24 hours)
 
-* 用Session人脸id匹配得到user id，再得到此用户历史订单的购买行为： 
+* Use the session face id to get user id, and retrieve the historical order data of this user： 
     
-    城市、常购买彩种、总购买天数、新老用户、常去站点类型（如超市、商场）  
-        
-    如果是新用户，不存在对应user id，历史购买特征用平均值或众数代替
+    City, Lottery Type, New/Old Users, Lottery Station Type (supermarket, restaurant), Total Purchase Days, Frequently Purchase Lottery Type
+    
+    If this is a new user and there is no user id, the feature from historical order data will be replaced by mean or mode.
 
 
-### 数据处理
+### Data Cleaning and Selected Features
 
-连续变量转为离散型one-hot，然后检验是否购买行为强相关，筛选后得到一共18个特征:
+Transform the continuous variables to one-hot encoding variables, and check whether they are strongly correlated with the dependent variable. There are 18 features in total after variable selection:
     
   
-|  特征   | 数据来源  |
+|  Feature   | Source  |
 |  ----  | ----  |
-| 美丑  | session人脸 |
-| 大笑  | session人脸 |
-| 无情绪  | session人脸 |
-| 正面情绪  | session人脸 |
-| 会话时间  | session |
-| 宜昌  | 用户属性 |
-| 恩施  | 用户属性 |
-| 武汉  | 用户属性 |
-| 好运十倍  | 历史购买 |
-| 七乐彩  | 历史购买 |
-| 十里桃花  | 历史购买 |
-| 其他彩种  | 历史购买 |
-| 总购买天数  | 历史购买 |
-| 新老用户  | 历史购买 |
-| 会所  | 历史购买 |
-| 棋牌室  | 历史购买 |
-| 超市  | 历史购买 |
-| 餐饮  | 历史购买 |
+| Beauty  | session face |
+| Laugh  | session face |
+| Neutral Emotion  | session face |
+| Positive Emotion  | session face |
+| Session Time  | session |
+| Yichang  | user attribute |
+| Enshi  | user attribute |
+| Wuhan  | user attribute |
+| Ten Times Good Luck  | historical order |
+| Qilecai  | historical order |
+| Shilitaohua  | historical order |
+| Other Lottery Type  | historical order |
+| Total Purchase Days  | historical order |
+| New User  | historical order |
+| Clubhouse  | historical order |
+| Chess Room  | historical order |
+| Supermarket  | historical order |
+| Restaurant  | historical order |
 
-### 模型
+### Model Structure
 
-拼接特征后输入3层MLP做多分类，预测Session购买的彩种 (双色球，好运十倍，福彩3d，其他彩种)
+Concatenate all the feaures, and input to a 3-layers MLP. Then perform a multiclass classification task and predict the lottery type the user will buy in the session (Two-color Ball, Ten Times Good Luck, Welfare Lottery 3D, Other Lottery Type)
 
-### 回测结果
+### Prediction result using historical data
 
-7月数据的准确率指标：
+Accuracy metrics using the data from 07/2021:
 
-| 类别 | 准确率 |
+| Type | Accuracy |
 | ---- | ---- |
-| 平均 | 0.45 |
-| 不买 | 0.533 |
-| 好运十倍 | 0.214 |
-| 双色球 | 0.261 |
-| 福彩3d | 0.522 |
-| 其他彩种 | 0.208 |
+| Average Accuracy | 0.85 |
+| No Buy | 0.833 |
+| Ten Times Good Luck | 0.814 |
+| Two-color Ball | 0.961 |
+| Welfare Lottery 3D | 0.822 |
+| Other Lottery Type | 0.908 |
 
 
-### 调用方法
+### Model Call Method
 ```
 python3 app.py \
     --port=8827 \
@@ -72,8 +74,3 @@ python3 app.py \
     --appname='buy_prediction' \
     --threaded=True
 ```
-
-
-### 接口文档
-
-http://wiki.szyh-smart.cn/dengqichun/ai/s4l0q
