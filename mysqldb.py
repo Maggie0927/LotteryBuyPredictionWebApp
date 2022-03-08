@@ -10,8 +10,7 @@ class MysqlDB():
     def __init__(self):
         self.lottery_order = pd.read_csv('data/lottery_order.csv', header=0) #导入旧表
         self.lottery_order['支付时间'] = pd.to_datetime(self.lottery_order['支付时间'])
-        self.db = pymysql.connect(host = 'rm-wz9803mf0awg83z580o.mysql.rds.aliyuncs.com', \
-            port = 3306, user = 'cloudlotteryread', passwd = 'Szyc2020@', db = 'cloudlottery', charset = 'utf8')
+        self.db = ... # confidential information
         self.initialize()
 
     def get_db(self, date):
