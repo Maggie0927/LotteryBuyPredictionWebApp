@@ -1,6 +1,6 @@
 ## Lottery Purchase Prediction Model
 
-(All confidential content has been removed)
+*(All confidential content has been removed)*
 
 ### Objective and Goal
 
