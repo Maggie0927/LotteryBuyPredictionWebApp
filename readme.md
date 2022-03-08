@@ -1,5 +1,7 @@
 ## Lottery Purchase Prediction Model
 
+(All confidential content has been removed)
+
 ### Objective and Goal
 
 * Predict the lottery type that the user in the session will buy, using the discrete features from the user face image and user's historical purchase data.  
