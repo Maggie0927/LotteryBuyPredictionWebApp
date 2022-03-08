@@ -37,8 +37,7 @@ def get_data(date):
 
     while True:
         try:
-            db = pymysql.connect(host = '127.0.0.1', \
-                port = server.local_bind_port, user = 'platfromread', passwd = 'Szyc2019@', db = 'user_center', charset = 'utf8')
+            db = ... # confidential information
             db.ping()
             break
         except pymysql.err.OperationalError:
